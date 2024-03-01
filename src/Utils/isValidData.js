@@ -1,6 +1,7 @@
 
 
 const isValidData = (email,password) => {
+  // eslint-disable-next-line
   const isEmailid=/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
   const isPass=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/.test(password);
 
