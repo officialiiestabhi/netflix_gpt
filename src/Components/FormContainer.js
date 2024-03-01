@@ -3,12 +3,13 @@ import isValidData from "../Utils/isValidData";
 import {  createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../Utils/firebase";
 
+
 const FormContainer = () => {
 
   const email=useRef(null);
   const password=useRef(null);
   const [Errmsg,setErrmsg]=useState("");
-
+   
  
   const checkData=()=>{
     const msg=isValidData(email.current.value,password.current.value);
@@ -24,8 +25,10 @@ const FormContainer = () => {
     createUserWithEmailAndPassword(auth, email.current.value,password.current.value)
     .then((userCredential) => {
       // Signed up 
+      // eslint-disable-next-line
       const user = userCredential.user;
-      console.log(user);
+      
+      
       // ...
     })
     .catch((error) => {
@@ -38,8 +41,10 @@ const FormContainer = () => {
     signInWithEmailAndPassword(auth, email.current.value,password.current.value)
   .then((userCredential) => {
     // Signed in 
+    // eslint-disable-next-line
     const user = userCredential.user;
-    console.log(user);
+    
+    
     // ...
   })
   .catch((error) => {
