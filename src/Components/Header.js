@@ -4,12 +4,24 @@ import {auth} from "../Utils/firebase"
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../Utils/userSlice";
 import {  useNavigate } from "react-router-dom";
-import { CNY_LOGO, USER_LOGO } from "../Utils/Constants";
+import { CNY_LOGO, SUPPORTED_LANG, USER_LOGO } from "../Utils/Constants";
+import { toggleGpt } from "../Utils/GptSlice";
+import { changeLang } from "../Utils/ConfigSlice";
 
 const Header = () => {
   const navigate=useNavigate();
   const user=useSelector((store)=>store.user)
 
+  const handleLangchange=(e)=>{
+    console.log(e.target.value);
+    dispatch(changeLang(e.target.value));
+  }
+
+
+  const gpthandler=()=>{
+    dispatch(toggleGpt());
+    
+  }
   const handleSignout=()=>{
     signOut(auth).then(() => {
       // Sign-out successful.
@@ -55,12 +67,21 @@ const Header = () => {
     
       {user &&
       <div className="mr-3 mt-3 flex space-x-4 p-1">
+      <select onChange={handleLangchange} className="rounded-md bg-slate-600 text-white px-1">
+      {
+        SUPPORTED_LANG.map((lang)=>(<option  key={lang.ident} value={lang.ident}>{lang.name}</option>))
+      }
+        
+      </select>
+      <button 
+      onClick={gpthandler}
+      className="border cursor-pointer text-white px-2 bg-pink-500 rounded-md" >RosieAI</button>
       <img
         src={USER_LOGO}
         alt="userlogo"
         className="w-10"
       />
-      <button onClick={handleSignout} className="ml-1 border cursor-pointer">sign Out</button>
+      <button onClick={handleSignout} className="ml-1 border cursor-pointer text-white px-1 rounded-md">Sign Out</button>
       
     </div>
       }

@@ -4,8 +4,21 @@ export const API_OPTIONS = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NmNlOGRjMGZlMWM3YTM5MjY5YjRiOTdlODNhYTY2NiIsInN1YiI6IjY1ZTAzZDBmNTFmOTlhMDE4NTU2YTUyNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.aAAZ6b-Kc4A4Mh6txe-M7eYk00hg4DudFQOaAVTBT8g'
+      Authorization: "Bearer "+process.env.REACT_APP_TMDB_KEY
     }
   };
 
   export const IMG_CDN_URL="https://image.tmdb.org/t/p/w500"
+
+  export const OPENAI_API_KEY=process.env.REACT_APP_OPENAI_API_KEY
+
+  export const SUPPORTED_LANG=[
+    {
+      ident:"en",name:"English"
+    },{
+      ident:"hindi",name:"Hindi"
+    },{
+      ident:"bangla",name:"Bangla"
+    }
+  ]
+  
